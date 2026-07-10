@@ -1,26 +1,157 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-heading);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  /* Brand-specific tokens */
+  --color-cream: var(--cream);
+  --color-ink: var(--ink);
+  --color-moss: var(--moss);
+  --color-moss-deep: var(--moss-deep);
+  --color-ochre: var(--ochre);
+  --color-clay: var(--clay);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 16px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.75rem;
+
+  /* Warm, natural palette — bone, espresso, moss, ochre. Deliberately un-generic. */
+  --cream: oklch(0.965 0.014 84);      /* #F6F1E8 bone */
+  --ink: oklch(0.265 0.014 66);        /* #26221C espresso */
+  --moss: oklch(0.47 0.052 132);       /* #4C5A3E deep moss */
+  --moss-deep: oklch(0.37 0.045 132);  /* darker moss */
+  --ochre: oklch(0.7 0.108 66);        /* #C6864F warm tan/ochre */
+  --clay: oklch(0.62 0.11 40);         /* terracotta accent */
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: oklch(0.985 0.008 84);
+  --card-foreground: var(--ink);
+  --popover: oklch(0.985 0.008 84);
+  --popover-foreground: var(--ink);
+  --primary: var(--moss);
+  --primary-foreground: oklch(0.97 0.014 84);
+  --secondary: oklch(0.925 0.02 84);
+  --secondary-foreground: var(--moss-deep);
+  --muted: oklch(0.93 0.016 84);
+  --muted-foreground: oklch(0.47 0.018 66);
+  --accent: var(--ochre);
+  --accent-foreground: oklch(0.22 0.02 66);
+  --destructive: oklch(0.55 0.2 27);
+  --border: oklch(0.87 0.018 82);
+  --input: oklch(0.87 0.018 82);
+  --ring: var(--moss);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv01";
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+  }
+  ::selection {
+    background: var(--moss);
+    color: var(--cream);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  /* Fluid display type */
+  .text-display {
+    font-family: var(--font-heading);
+    font-size: clamp(2.75rem, 7vw, 6rem);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+  }
+  .text-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+  .grain {
+    position: relative;
+  }
+  /* Subtle paper grain — helps kill the flat "AI" look */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Splitting.js char reveal — headings rise into place */
+[data-splitting] .char,
+[data-splitting] .word {
+  display: inline-block;
+}
+
+/* GSAP reveal base state (before JS runs / no-JS fallback keeps text visible) */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(1.1em);
+}
+
+/* Marquee for the trust strip */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+.marquee-pause:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* Swiper overrides to match the brand */
+.reviews-swiper .swiper-slide {
+  height: auto;
 }
