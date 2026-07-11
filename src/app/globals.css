@@ -42,7 +42,7 @@
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 1rem;
 
   /* Warm, natural palette — bone, espresso, moss, ochre. Deliberately un-generic. */
   --cream: oklch(0.965 0.014 84);      /* #F6F1E8 bone */
@@ -88,9 +88,9 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    line-height: 1.02;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.03;
   }
   ::selection {
     background: var(--moss);
@@ -103,9 +103,9 @@
   .text-display {
     font-family: var(--font-heading);
     font-size: clamp(2.75rem, 7vw, 6rem);
-    line-height: 0.98;
-    letter-spacing: -0.03em;
-    font-weight: 500;
+    line-height: 0.96;
+    letter-spacing: -0.045em;
+    font-weight: 700;
   }
   .text-eyebrow {
     text-transform: uppercase;

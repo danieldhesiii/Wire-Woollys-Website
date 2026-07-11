@@ -35,7 +35,24 @@ export function Hero() {
             Grooming that
             <br />
             your dog{" "}
-            <span className="italic text-primary">actually</span> enjoys.
+            <span className="relative whitespace-nowrap text-primary">
+              actually
+              <svg
+                aria-hidden
+                viewBox="0 0 200 12"
+                preserveAspectRatio="none"
+                className="absolute -bottom-1 left-0 h-2.5 w-full text-accent"
+              >
+                <path
+                  d="M2 8 C 40 3, 80 3, 120 6 S 180 9, 198 5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>{" "}
+            enjoys.
           </h1>
 
           <Reveal delay={0.1}>

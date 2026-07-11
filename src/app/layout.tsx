@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Fraunces, Geist } from "next/font/google";
+import { Bricolage_Grotesque, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/smooth-scroll-provider";
 import { business } from "@/lib/business";
 
-// Fraunces: a warm, optical serif with real personality — carries the headings.
-const fraunces = Fraunces({
+// Bricolage Grotesque: a contemporary display grotesque with real character —
+// friendly and distinctive, deliberately not the "elegant template serif" look.
+const heading = Bricolage_Grotesque({
   variable: "--font-heading",
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  axes: ["opsz", "SOFT"],
 });
 
-// Geist: clean neutral grotesque for body copy.
-const geist = Geist({
+// Hanken Grotesk: warm, humanist body sans with a bit more personality than a
+// neutral system font.
+const body = Hanken_Grotesk({
   variable: "--font-sans",
   subsets: ["latin"],
 });
@@ -50,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-GB"
-      className={`${fraunces.variable} ${geist.variable} h-full antialiased`}
+      className={`${heading.variable} ${body.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <SmoothScrollProvider>{children}</SmoothScrollProvider>

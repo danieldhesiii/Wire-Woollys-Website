@@ -31,29 +31,25 @@ export function Reviews({ initial }: { initial: Review[] }) {
   return (
     <section id="reviews" className="scroll-mt-24 overflow-hidden bg-secondary/40 py-20 sm:py-28">
       <Container>
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <div className="max-w-xl">
-            <span className="text-eyebrow text-accent">Kind words</span>
-            <SplitText
-              text="Loved by local dogs & their humans"
-              className="mt-3 font-heading text-4xl text-foreground sm:text-5xl"
-            />
-            <Reveal delay={0.1}>
-              <div className="mt-5 flex items-center gap-3">
-                <Stars n={5} className="[&_svg]:h-5 [&_svg]:w-5" />
-                <span className="text-lg font-semibold text-foreground">
-                  {business.rating.toFixed(1)}
-                </span>
-                <span className="text-sm text-muted-foreground">
-                  rated on Google
-                </span>
-              </div>
-            </Reveal>
-          </div>
-          <Reveal delay={0.05}>
+        <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+          <span className="text-eyebrow text-accent">Kind words</span>
+          <SplitText
+            text="Loved by local dogs & their humans"
+            className="mt-3 font-heading text-4xl text-foreground sm:text-5xl"
+          />
+          <Reveal delay={0.1}>
+            <div className="mt-5 flex items-center justify-center gap-3">
+              <Stars n={5} className="[&_svg]:h-5 [&_svg]:w-5" />
+              <span className="text-lg font-semibold text-foreground">
+                {business.rating.toFixed(1)}
+              </span>
+              <span className="text-sm text-muted-foreground">rated on Google</span>
+            </div>
+          </Reveal>
+          <Reveal delay={0.16}>
             <button
               onClick={() => setFormOpen(true)}
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[var(--moss-deep)]"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[var(--moss-deep)]"
             >
               <PenLine className="h-4 w-4" /> Leave a review
             </button>
@@ -61,17 +57,26 @@ export function Reviews({ initial }: { initial: Review[] }) {
         </div>
       </Container>
 
-      {/* Moving carousel — full-bleed */}
-      <div className="reviews-swiper mt-12">
+      {/* Moving carousel — full-bleed, softly faded at both edges so it reads as
+          intentional rather than cut off. */}
+      <div
+        className="reviews-swiper mt-14"
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, #000 9%, #000 91%, transparent)",
+          maskImage:
+            "linear-gradient(to right, transparent, #000 9%, #000 91%, transparent)",
+        }}
+      >
         <Swiper
           modules={[Autoplay]}
           slidesPerView="auto"
-          spaceBetween={20}
+          centeredSlides
+          spaceBetween={24}
           loop={reviews.length > 2}
           speed={6000}
           autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true }}
           allowTouchMove
-          className="!px-5 sm:!px-8"
         >
           {reviews.map((r) => (
             <SwiperSlide key={r.id} className="!w-[86vw] max-w-sm sm:!w-[380px]">
