@@ -155,3 +155,11 @@
 .reviews-swiper .swiper-slide {
   height: auto;
 }
+/* Continuous marquee: Swiper eases each slide by default, which makes a
+   delay:0 autoplay stutter. Forcing linear timing = smooth endless scroll. */
+.reviews-swiper .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+.reviews-swiper .swiper {
+  overflow: visible;
+}

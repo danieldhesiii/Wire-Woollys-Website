@@ -28,6 +28,10 @@ export function Reviews({ initial }: { initial: Review[] }) {
   const [reviews] = useState<Review[]>(initial);
   const [formOpen, setFormOpen] = useState(false);
 
+  // A seamless loop needs plenty of slides. If the studio only has a few
+  // reviews, repeat them so the marquee never runs out and jumps.
+  const slides = reviews.length >= 6 ? reviews : [...reviews, ...reviews, ...reviews];
+
   return (
     <section id="reviews" className="scroll-mt-24 overflow-hidden bg-secondary/40 py-20 sm:py-28">
       <Container>
@@ -71,15 +75,20 @@ export function Reviews({ initial }: { initial: Review[] }) {
         <Swiper
           modules={[Autoplay]}
           slidesPerView="auto"
-          centeredSlides
           spaceBetween={24}
-          loop={reviews.length > 2}
-          speed={6000}
-          autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true }}
+          loop
+          loopAdditionalSlides={slides.length}
+          speed={5000}
+          grabCursor
           allowTouchMove
+          autoplay={{
+            delay: 0,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: false,
+          }}
         >
-          {reviews.map((r) => (
-            <SwiperSlide key={r.id} className="!w-[86vw] max-w-sm sm:!w-[380px]">
+          {slides.map((r, i) => (
+            <SwiperSlide key={`${r.id}-${i}`} className="!w-[86vw] max-w-sm sm:!w-[380px]">
               <figure className="flex h-full flex-col rounded-3xl border border-border bg-card p-6 shadow-sm">
                 <Quote className="h-7 w-7 text-accent/50" />
                 <blockquote className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-foreground/90">
