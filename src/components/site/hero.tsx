@@ -97,40 +97,23 @@ export function Hero() {
           </Reveal>
         </div>
 
-        {/* Imagery */}
-        <Reveal delay={0.12} className="relative">
-          <div className="relative">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-xl shadow-black/10">
-              <Image
-                src={img.heroMain}
-                alt="A freshly groomed dog looking happy"
-                fill
-                priority
-                sizes="(max-width: 1024px) 90vw, 45vw"
-                className="object-cover"
-              />
-            </div>
-            {/* overlapping second image */}
-            <div className="absolute -bottom-8 -left-8 hidden w-40 overflow-hidden rounded-2xl border-4 border-background shadow-lg sm:block">
-              <div className="relative aspect-square">
-                <Image
-                  src={img.heroSmall}
-                  alt="A dog enjoying a warm bath"
-                  fill
-                  sizes="160px"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            {/* floating rating chip */}
-            <div className="absolute -right-3 top-8 flex items-center gap-2 rounded-full bg-background px-4 py-2.5 shadow-lg">
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-primary text-primary-foreground">
-                <MapPin className="h-4 w-4" />
+        {/* Imagery — single clean frame, nothing overlapping */}
+        <Reveal delay={0.12}>
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[2rem] shadow-xl shadow-black/10 lg:max-w-none">
+            <Image
+              src={img.heroMain}
+              alt="A freshly groomed dog looking happy"
+              fill
+              priority
+              sizes="(max-width: 1024px) 90vw, 45vw"
+              className="object-cover"
+            />
+            {/* contained location badge, sitting inside the frame */}
+            <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-background/90 px-3.5 py-2 shadow-sm backdrop-blur">
+              <MapPin className="h-4 w-4 text-primary" />
+              <span className="text-xs font-semibold text-foreground">
+                Firsgrove Cres · Warley
               </span>
-              <div className="pr-1 leading-tight">
-                <p className="text-xs font-semibold text-foreground">Firsgrove Cres</p>
-                <p className="text-[0.7rem] text-muted-foreground">Warley · CM14</p>
-              </div>
             </div>
           </div>
         </Reveal>
