@@ -28,18 +28,19 @@ export function About() {
             <div className="relative aspect-[5/6] overflow-hidden rounded-[2rem] shadow-xl shadow-black/10">
               <Image
                 src={img.about}
-                alt="A groomer gently caring for a dog"
+                alt="Show-standard grooming on display at Crufts"
                 fill
                 sizes="(max-width: 1024px) 90vw, 45vw"
                 className="object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -right-4 max-w-[200px] rounded-2xl border border-border bg-background p-4 shadow-lg sm:-right-6">
+            <div className="absolute -bottom-6 -right-4 max-w-[210px] rounded-2xl border border-border bg-background p-4 shadow-lg sm:-right-6">
               <p className="font-heading text-lg text-primary">
-                &ldquo;Wire &amp; Woolly&rdquo;
+                Show-standard care
               </p>
               <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                Two coats, one philosophy — treat every dog like it&apos;s our own.
+                Grooming to the same standard you&apos;d see in the Crufts ring —
+                for every dog that visits.
               </p>
             </div>
           </div>

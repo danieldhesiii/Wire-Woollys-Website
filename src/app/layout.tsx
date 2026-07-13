@@ -33,12 +33,17 @@ export const metadata: Metadata = {
     "puppy grooming",
     "Wire & Woolly",
   ],
+  icons: {
+    icon: "/brand/logo.png",
+    apple: "/brand/logo.png",
+  },
   openGraph: {
     title: `${business.name} — Dog Grooming in Warley, Brentwood`,
     description:
       "Independent, 5-star dog grooming in Warley, Brentwood. Book your dog in online.",
     type: "website",
     locale: "en_GB",
+    images: [{ url: "/gallery/cocker-red.jpg", width: 474, height: 1024, alt: business.name }],
   },
 };
 

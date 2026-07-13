@@ -3,6 +3,7 @@ import { Hero } from "@/components/site/hero";
 import { TrustStrip } from "@/components/site/trust-strip";
 import { Services } from "@/components/site/services";
 import { Gallery } from "@/components/site/gallery";
+import { BeforeAfter } from "@/components/site/before-after";
 import { Reviews } from "@/components/site/reviews";
 import { About } from "@/components/site/about";
 import { Visit } from "@/components/site/visit";
@@ -25,6 +26,7 @@ export default async function Home() {
         <TrustStrip />
         <Services />
         <Gallery />
+        <BeforeAfter />
         <Reviews initial={reviews} />
         <About />
         <Visit />
