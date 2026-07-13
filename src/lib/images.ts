@@ -4,10 +4,10 @@ const G = (name: string) => `/gallery/${name}`;
 export const logo = "/brand/logo.png";
 
 export const img = {
-  heroMain: G("cocker-red.jpg"), // freshly groomed red cocker spaniel
+  heroMain: G("cockapoo-rest.jpg"), // freshly groomed apricot cockapoo
   about: G("crufts.jpg"), // show-standard grooming at Crufts
   service: {
-    signature: G("cockapoo-rest.jpg"),
+    signature: G("cocker-red.jpg"),
     puppy: G("puppy.jpg"),
     spa: G("doodle-white-2.jpg"),
     extras: G("schnauzer-toy.jpg"),
