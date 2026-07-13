@@ -30,8 +30,8 @@ export default async function Home() {
         <BeforeAfter />
         <Reviews initial={reviews} />
         <About />
-        <Visit />
         <CTA />
+        <Visit />
         <Booking />
       </main>
       <Footer />
