@@ -72,7 +72,7 @@ export function Header() {
             <span className="tabular-nums">{business.phone}</span>
           </a>
           <a
-            href="/book"
+            href="/#book"
             className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-[var(--moss-deep)] transition-colors"
           >
             Book now
@@ -117,7 +117,7 @@ export function Header() {
               <Phone className="h-4 w-4" /> {business.phone}
             </a>
             <a
-              href="/book"
+              href="/#book"
               onClick={() => setOpen(false)}
               className="rounded-full bg-primary py-4 text-center text-base font-semibold text-primary-foreground"
             >

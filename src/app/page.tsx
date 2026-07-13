@@ -8,6 +8,7 @@ import { Reviews } from "@/components/site/reviews";
 import { About } from "@/components/site/about";
 import { Visit } from "@/components/site/visit";
 import { CTA } from "@/components/site/cta";
+import { Booking } from "@/components/site/booking";
 import { Footer } from "@/components/site/footer";
 import { MobileBar } from "@/components/site/mobile-bar";
 import { getApprovedReviews } from "@/lib/store";
@@ -31,6 +32,7 @@ export default async function Home() {
         <About />
         <Visit />
         <CTA />
+        <Booking />
       </main>
       <Footer />
       <MobileBar />

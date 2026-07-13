@@ -66,7 +66,7 @@ export function Hero() {
           <Reveal delay={0.18}>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
-                href="/book"
+                href="/#book"
                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-primary-foreground transition-colors hover:bg-[var(--moss-deep)]"
               >
                 Book your dog in

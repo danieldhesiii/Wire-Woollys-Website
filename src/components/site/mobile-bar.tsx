@@ -15,7 +15,7 @@ export function MobileBar() {
           <Phone className="h-4 w-4" /> Call
         </a>
         <a
-          href="/book"
+          href="/#book"
           className="flex items-center justify-center gap-2 rounded-full bg-primary py-3 text-sm font-semibold text-primary-foreground"
         >
           <CalendarDays className="h-4 w-4" /> Book

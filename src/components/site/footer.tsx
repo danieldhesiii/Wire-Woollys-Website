@@ -33,7 +33,7 @@ export function Footer() {
                 ["/#gallery", "Gallery"],
                 ["/#reviews", "Reviews"],
                 ["/#about", "About us"],
-                ["/book", "Book online"],
+                ["/#book", "Book online"],
               ].map(([href, label]) => (
                 <li key={href}>
                   <a

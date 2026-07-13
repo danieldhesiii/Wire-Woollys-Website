@@ -95,7 +95,7 @@ export function Services() {
             </div>
             <div className="p-6">
               <a
-                href="/book"
+                href="/#book"
                 className="group inline-flex items-center gap-2 text-sm font-semibold text-primary"
               >
                 Book {current.name.toLowerCase()}
