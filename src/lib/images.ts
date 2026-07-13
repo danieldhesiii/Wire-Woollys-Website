@@ -7,7 +7,7 @@ export const img = {
   heroMain: G("cockapoo-rest.jpg"), // freshly groomed apricot cockapoo
   about: G("crufts.jpg"), // show-standard grooming at Crufts
   service: {
-    signature: G("cocker-red.jpg"),
+    signature: G("cockapoo-apricot.jpg"),
     puppy: G("puppy.jpg"),
     spa: G("doodle-white-2.jpg"),
     extras: G("schnauzer-toy.jpg"),

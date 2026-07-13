@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { MoveHorizontal } from "lucide-react";
 import { img } from "@/lib/images";
@@ -17,70 +17,53 @@ function Slider({
   dog: string;
 }) {
   const [pos, setPos] = useState(50);
-  const frameRef = useRef<HTMLDivElement>(null);
-
-  const move = (clientX: number) => {
-    const el = frameRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const p = ((clientX - rect.left) / rect.width) * 100;
-    setPos(Math.max(0, Math.min(100, p)));
-  };
 
   return (
     <figure>
-      <div
-        ref={frameRef}
-        className="group relative aspect-[4/5] w-full touch-none select-none overflow-hidden rounded-[2rem] shadow-xl shadow-black/10"
-        onPointerMove={(e) => {
-          if (e.buttons === 1) move(e.clientX);
-        }}
-        onPointerDown={(e) => {
-          e.currentTarget.setPointerCapture(e.pointerId);
-          move(e.clientX);
-        }}
-      >
+      <div className="relative aspect-[4/5] w-full select-none overflow-hidden rounded-2xl shadow-xl shadow-black/10 sm:rounded-[2rem]">
         {/* After (full) */}
         <Image
           src={after}
           alt={`${dog} after grooming`}
           fill
-          sizes="(max-width: 768px) 90vw, 45vw"
-          className="object-cover"
+          draggable={false}
+          sizes="(max-width: 640px) 45vw, 45vw"
+          className="pointer-events-none object-cover"
         />
-        <span className="absolute right-4 top-4 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow-sm">
+        <span className="pointer-events-none absolute right-2 top-2 z-10 rounded-full bg-primary px-2 py-0.5 text-[0.6rem] font-semibold text-primary-foreground shadow-sm sm:right-4 sm:top-4 sm:px-3 sm:py-1 sm:text-xs">
           After
         </span>
 
         {/* Before (clipped to the left of the handle) */}
         <div
-          className="absolute inset-0"
+          className="pointer-events-none absolute inset-0"
           style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
         >
           <Image
             src={before}
             alt={`${dog} before grooming`}
             fill
-            sizes="(max-width: 768px) 90vw, 45vw"
+            draggable={false}
+            sizes="(max-width: 640px) 45vw, 45vw"
             className="object-cover"
           />
-          <span className="absolute left-4 top-4 rounded-full bg-background/90 px-3 py-1 text-xs font-semibold text-foreground shadow-sm backdrop-blur">
+          <span className="absolute left-2 top-2 z-10 rounded-full bg-background/90 px-2 py-0.5 text-[0.6rem] font-semibold text-foreground shadow-sm backdrop-blur sm:left-4 sm:top-4 sm:px-3 sm:py-1 sm:text-xs">
             Before
           </span>
         </div>
 
         {/* Handle */}
         <div
-          className="pointer-events-none absolute inset-y-0"
+          className="pointer-events-none absolute inset-y-0 z-10"
           style={{ left: `${pos}%`, transform: "translateX(-50%)" }}
         >
           <div className="h-full w-0.5 bg-[var(--cream)] shadow-[0_0_0_1px_rgba(0,0,0,0.15)]" />
-          <div className="absolute top-1/2 left-1/2 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-[var(--cream)] text-primary shadow-lg">
-            <MoveHorizontal className="h-5 w-5" />
+          <div className="absolute top-1/2 left-1/2 grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-[var(--cream)] text-primary shadow-lg sm:h-11 sm:w-11">
+            <MoveHorizontal className="h-4 w-4 sm:h-5 sm:w-5" />
           </div>
         </div>
 
-        {/* Keyboard-accessible control */}
+        {/* Full-cover control: drag anywhere to compare (also keyboard-accessible) */}
         <input
           type="range"
           min={0}
@@ -88,10 +71,10 @@ function Slider({
           value={pos}
           onChange={(e) => setPos(Number(e.target.value))}
           aria-label={`Reveal ${dog} before and after grooming`}
-          className="absolute inset-x-0 bottom-0 h-11 w-full cursor-ew-resize opacity-0"
+          className="absolute inset-0 z-20 h-full w-full cursor-ew-resize opacity-0"
         />
       </div>
-      <figcaption className="mt-4 text-center text-sm font-medium text-muted-foreground">
+      <figcaption className="mt-3 text-center text-xs font-medium text-muted-foreground sm:mt-4 sm:text-sm">
         {dog} · drag to compare
       </figcaption>
     </figure>
@@ -116,7 +99,7 @@ export function BeforeAfter() {
           </Reveal>
         </div>
 
-        <div className="mx-auto mt-14 grid max-w-3xl gap-10 sm:grid-cols-2">
+        <div className="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-4 sm:gap-10">
           {img.transformations.map((t, i) => (
             <Reveal key={t.dog} delay={0.08 * i}>
               <Slider before={t.before} after={t.after} dog={t.dog} />
